@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title | default: 'Sad Folks Interactive' }}</title>
+    <link rel="stylesheet" href="{% getBundleFileUrl "css" %}">
+  </head>
+  <body>
+    <header>
+      <a class="home-link" href="/"><img alt="Sad Folks Interactive"></a>
+      <div class="filler"></div>
+
+      <nav class="site-links">
+        <a {% if page.url == '/about/' %}aria-current="page"{% endif %} href="/about">About</a>
+        <a {% if page.url contains '/games' %}aria-current="page"{% endif %} href="/games">Games</a>
+        <a {% if page.url contains '/blog' %}aria-current="page"{% endif %} href="/blog">Blog</a>
+        <a {% if page.url == '/join/' %}aria-current="page"{% endif %} href="/join">Join</a>
+        <a {% if page.url == '/contact/' %}aria-current="page"{% endif %} href="/contact">Contact</a>
+      </nav>
+      <nav class="social-links">
+        <a href="https://twitter.com/SadInteractive" target="_blank"><img alt="Twitter" height="76" src="/images/x.svg"></a>
+        <a href="" target="_blank"><img alt="Bluesky" height="76" src="/images/bsky.svg"></a>
+        <a href="" target="_blank"><img alt="Mastodon" height="76" src="/images/mastodon.svg"></a>
+        <a href="https://cohost.org/SadFolksInteractive" target="_blank"><img alt="Cohost" height="76" src="/images/cohost.svg"></a>
+      </nav>
+    </header>
+
+    {{ content }}
+
+    <script src="{% getBundleFileUrl "js" %}"></script>
+  </body>
+</html>
+
+{% css %}
+html, head, body { padding: 0; margin: 0; }
+a { text-decoration: none; }
+
+header {
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+  border-bottom: 2px solid black;
+}
+
+.site-links {
+  margin-left: auto;
+
+  a {
+    color: black;
+
+    &[aria-current] {
+      color: skyblue;
+    }
+
+    + a:before {
+      content: ' - ';
+    }
+  }
+}
+
+.social-links {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+
+  a { display: inline-block; }
+}
+{% endcss %}

@@ -1,0 +1,21 @@
+{
+  "private": "true",
+  "name": "sad-folks-website",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "yarn build:clean && yarn build:site",
+    "serve": "yarn build:clean && yarn build:serve",
+    "build:clean": "rimraf docs",
+    "build:site": "eleventy",
+    "build:serve": "eleventy --serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lag.Com <lagdotcom@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "@11ty/eleventy-plugin-bundle": "^1.0.5",
+    "rimraf": "^5.0.5",
+    "sass": "^1.72.0"
+  }
+}
