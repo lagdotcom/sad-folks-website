@@ -1,4 +1,5 @@
 const bundlerPlugin = require("@11ty/eleventy-plugin-bundle");
+const { inspect } = require("util");
 
 const sass = require("sass");
 
@@ -16,7 +17,9 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy("src/images");
 
+  eleventyConfig.addShortcode("inspect", inspect);
+
   return {
-    dir: { input: "src", output: "docs" },
+    dir: { input: "src" },
   };
 };

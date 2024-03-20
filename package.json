@@ -5,7 +5,8 @@
   "scripts": {
     "build": "yarn build:clean && yarn build:site",
     "serve": "yarn build:clean && yarn build:serve",
-    "build:clean": "rimraf docs",
+    "build:gh": "yarn build:clean && env NODE_ENV=production && yarn build:site --pathprefix sad-folks-website",
+    "build:clean": "rimraf _site",
     "build:site": "eleventy",
     "build:serve": "eleventy --serve",
     "test": "echo \"Error: no test specified\" && exit 1"
