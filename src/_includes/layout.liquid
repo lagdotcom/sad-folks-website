@@ -18,7 +18,7 @@
           Games
           <div class="submenu">
             {%- for game in collections.game -%}
-            <a {% if page.url == game.page.url %}aria-current="page" {% endif %}href="{{ game.page.url | url }}">{{ game.data.title }}</a>
+            <a {% if page.url == game.page.url %}aria-current="page" {% endif %}href="{{ game.page.url | url }}">{{ game.data.name }}</a>
             {%- endfor -%}
           </div>
         </span>
