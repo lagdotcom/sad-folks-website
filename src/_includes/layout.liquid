@@ -5,14 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ meta.title | default: 'Sad Folks Interactive' }}</title>
     {% if meta.description %}<meta name="description" content="{{ meta.description }}">{% endif %}
+    <meta name="generator" content="{{ eleventy.generator }}">
 
-    <link rel="stylesheet" href="{{ '/' | url | slice: 0, -1 }}{% getBundleFileUrl "css" %}">
+    <link rel="stylesheet" href="{{ '/' | url | slice: 0, -1 }}{% getBundleFileUrl "css", "layout" %}">
+    {%- capture cssBundle -%}{%- getBundleFileUrl "css" -%}{%- endcapture -%}
+    {% if cssBundle %}<link rel="stylesheet" href="{{ '/' | url | slice: 0, -1 }}{{ cssBundle }}">{% endif %}
   </head>
   <body>
     <header>
       <a class="home-link" href="{{ '/' | url }}"><img alt="Sad Folks Interactive"></a>
-      {%- include 'site-links.liquid' -%}
-      {%- include 'social-links.liquid' -%}
+      {% include 'site-links.liquid' %}
+      {% include 'social-links.liquid' %}
     </header>
 
     {{ content }}
@@ -25,22 +28,6 @@
   </body>
 </html>
 
-{% css %}
-html, head, body { padding: 0; margin: 0; }
-a { text-decoration: none; }
-
-header {
-  display: flex;
-  column-gap: 12px;
-  border-bottom: 2px solid black;
-}
-
-.topbox {
-  padding: 1em 0;
-  border-bottom: 1px solid black;
-}
-.tagline {
-  font-size: 2em;
-  text-align: center;
-}
+{% css 'layout' %}
+  {% include 'layout.scss' %}
 {% endcss %}

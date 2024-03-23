@@ -1,0 +1,14 @@
+.social-links {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+
+  a {
+    display: inline-block;
+  }
+
+  .social-link-todo {
+    cursor: not-allowed;
+  }
+}

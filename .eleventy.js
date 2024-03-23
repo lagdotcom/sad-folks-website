@@ -1,9 +1,85 @@
 const bundlerPlugin = require("@11ty/eleventy-plugin-bundle");
+const htmlMinifier = require("html-minifier");
 const { inspect } = require("util");
 
 const sass = require("sass");
 
-/** @arg {import('@11ty/eleventy').UserConfig} eleventyConfig */
+/** @typedef {'html'|'liquid'|'ejs'|'md'|'hbs'|'mustache'|'haml'|'pug'|'njk'|'11ty.js'} TemplateShortName */
+
+/**
+ * @typedef {object} EleventyOptions
+ * @prop {{ input?: string, includes?: string, layouts?: string, data?: string, output?: string }} [dir]
+ * @prop {TemplateShortName|false} [htmlTemplateEngine]
+ * @prop {TemplateShortName[]} [templateFormats]
+ * @prop {string} [pathPrefix]
+ * @prop {string} [htmlOutputSuffix]
+ */
+
+/** @typedef {<T>(config: EleventyConfig, options: T) => void} EleventyPlugin */
+
+/**
+ * @typedef {object} RecursiveCopyOptions
+ * @prop {boolean} overwrite
+ * @prop {boolean} expand
+ * @prop {boolean} dot
+ * @prop {boolean} junk
+ * @prop {function|RegExp|string|string[]} filter
+ * @prop {(original: string) => string} rename
+ * @prop {(src: string, dest: string, stats) => Promise<string>} transform
+ * @prop {boolean} results
+ * @prop {number} concurrency
+ * @prop {boolean} debug
+ */
+
+/**
+ * @typedef {object} PageContext
+ * @prop {string|false} url
+ * @prop {string} fileSlug
+ * @prop {string} filePathStem
+ * @prop {Date} date
+ * @prop {string} inputPath
+ * @prop {string} outputPath
+ * @prop {string} outputFileExtension
+ * @prop {string} lang
+ */
+
+/**
+ * @typedef {object} EleventyContext
+ * @prop {string} version
+ * @prop {string} generator
+ * @prop {{ root: string, config: string, source: 'cli'|'script', runMode: 'serve'|'watch'|'build' }} env
+ * @prop {{ path: Record<string, string|number>, query: Record<string, string|number> }} serverless
+ */
+
+/**
+ * @typedef {object} TemplateContext
+ * @prop {PageContext} page
+ * @prop {EleventyContext} eleventy
+ */
+
+/**
+ * @typedef {object} TransformContext
+ * @prop {PageContext} page
+ */
+
+/**
+ * @typedef {object} EleventyConfig
+ * @prop {(fileOrDir: string|object, copyOptions?: Partial<RecursiveCopyOptions>) => this} addPassthroughCopy
+ * @prop {<T>(plugin: EleventyPlugin<T>, options?: T) => void} addPlugin
+ * @prop {(code: string, callback: (this: TemplateContext, ...args: any[]) => string) => void} addFilter
+ * @prop {(name: string, callback: (this: TransformContext, content: string) => void) => void} addLinter
+ * @prop {(code: string, callback: (this: TemplateContext, ...args: any[]) => string) => void} addShortcode
+ * @prop {(name: string, callback: (this: TransformContext, content: string) => string) => void} addTransform
+ * @prop {(name: string) => void} setDataFileBaseName
+ * @prop {(suffixes: string[]) => void} setDataFileSuffixes
+ * @prop {(mode: boolean) => void} setQuietMode
+ * @prop {(formats: TemplateShortName[]) => void} setTemplateFormats
+ */
+
+/**
+ * @param {EleventyConfig} eleventyConfig
+ * @returns {EleventyOptions}
+ */
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(bundlerPlugin, {
     transforms: [
@@ -24,6 +100,17 @@ module.exports = function (eleventyConfig) {
       ? this.page.url === url
       : this.page.url.startsWith(url);
     if (match) return 'aria-current="page"';
+  });
+
+  eleventyConfig.addTransform("html-minifier", function (content) {
+    if (this.page.outputPath && this.page.outputPath.endsWith(".html"))
+      return htmlMinifier.minify(content, {
+        useShortDoctype: true,
+        removeComments: true,
+        collapseWhitespace: true,
+      });
+
+    return content;
   });
 
   return {

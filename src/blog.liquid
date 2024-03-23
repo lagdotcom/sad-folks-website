@@ -4,7 +4,7 @@ meta:
   title: Blog | Sad Folks Interactive
 ---
 
-{%- for post in collections.blog reversed -%}
+{% for post in collections.blog reversed %}
   <div class="topbox">
     <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%B %e, %Y' }}</time>
     <div class="title">{{ post.data.title }}</div>
@@ -14,33 +14,16 @@ meta:
     <aside>
       <img alt="/images/{{ post.data.author }}.png" alt="{{ post.data.author }}" />
       <div>{{ post.data.author }}</div>
-      {%- if post.data.social -%}
-        {%- if post.data.social.url -%}<a href="{{ post.data.social.url }}">{%- endif -%}
+      {% if post.data.social %}
+        {% if post.data.social.url %}<a href="{{ post.data.social.url }}">{% endif %}
         {{ post.data.social.handle }}
-        {%- if post.data.social.url -%}</a>{%- endif -%}
-      {%- endif -%}
+        {% if post.data.social.url %}</a>{% endif %}
+      {% endif %}
     </aside>
     <main>{{ post.content }}</main>
   </div>
-{%- endfor -%}
+{% endfor %}
 
 {% css %}
-.article {
-  display: flex;
-  column-gap: 20px;
-  padding: 1em 0;
-
-  aside {
-    width: 200px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-right: 20px;
-    border-right: 2px solid black;
-  }
-
-  main {
-    flex: 1;
-  }
-}
+  {% include 'blog.scss' %}
 {% endcss %}

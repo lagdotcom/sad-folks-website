@@ -1,34 +1,23 @@
 <nav class="social-links">
-  {%- for link in socials -%}
-    <a href="{{ link.url }}" target="_blank" {%- if link.class -%}class="{{ link.class }}"{%- endif -%}><img
-      alt="{{ link.name }}"
-      height="76"
-      src="{{ link.icon | url }}"></a>
-  {%- endfor -%}
+  {% for link in socials %}
+    {% if link.todo %}
+      <span class="social-link-todo"><img
+          alt="{{ link.name }}"
+          height="76"
+          src="{{ link.icon | url }}"></span>
+    {% else %}
+      <a href="{{ link.url }}" target="_blank"><img
+          alt="{{ link.name }}"
+          height="76"
+          src="{{ link.icon | url }}"></a>
+    {% endif %}
+  {% endfor %}
 </nav>
 
-{% css %}
-.social-links {
-  height: 90px;
-  display: flex;
-  align-items: center;
-  column-gap: 12px;
-
-  a {
-    display: inline-block;
-
-    &.todo {
-      cursor: not-allowed;
-    }
-  }
-}
+{% css 'layout' %}
+  {% include 'social-links.scss' %}
 {% endcss %}
 
 {% js %}
-for (const elem of document.querySelectorAll('.social-links .todo')) {
-  elem.addEventListener('click', (e) => {
-    alert("yo J tell me what this URL is lol");
-    e.preventDefault();
-  })
-}
+  {% include 'social-links.js' %}
 {% endjs %}

@@ -7,3 +7,7 @@ social:
 ---
 
 Lorem ipsum and all that.
+
+Here's another paragraph.
+
+Looks like the spacing is fine.

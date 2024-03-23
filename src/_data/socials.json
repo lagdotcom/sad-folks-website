@@ -11,9 +11,8 @@
   },
   {
     "name": "Mastodon",
-    "url": "TODO",
     "icon": "/images/mastodon.svg",
-    "class": "todo"
+    "todo": true
   },
   {
     "name": "Cohost",
