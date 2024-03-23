@@ -19,6 +19,13 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addShortcode("inspect", inspect);
 
+  eleventyConfig.addShortcode("cur", function (url) {
+    const match = url.endsWith("/")
+      ? this.page.url === url
+      : this.page.url.startsWith(url);
+    if (match) return 'aria-current="page"';
+  });
+
   return {
     dir: { input: "src" },
   };

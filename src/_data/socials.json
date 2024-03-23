@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Twitter",
+    "url": "https://twitter.com/SadInteractive",
+    "icon": "/images/x.svg"
+  },
+  {
+    "name": "Bluesky",
+    "url": "https://bsky.app/profile/sadfolks.bsky.social",
+    "icon": "/images/bsky.svg"
+  },
+  {
+    "name": "Mastodon",
+    "url": "TODO",
+    "icon": "/images/mastodon.svg",
+    "class": "todo"
+  },
+  {
+    "name": "Cohost",
+    "url": "https://cohost.org/SadFolksInteractive",
+    "icon": "/images/cohost.svg"
+  }
+]

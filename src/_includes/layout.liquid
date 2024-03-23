@@ -11,30 +11,8 @@
   <body>
     <header>
       <a class="home-link" href="{{ '/' | url }}"><img alt="Sad Folks Interactive"></a>
-      <nav class="site-links">
-        <a {% if page.url == '/about/' %}aria-current="page" {% endif %}href="{{ '/about' | url }}">About</a>
-        <span class="sep">-</span>
-        <span class="link has-submenu"{% if page.url contains '/games' %} aria-current="page"{% endif %}>
-          Games
-          <div class="submenu">
-            {%- for game in collections.game -%}
-            <a {% if page.url == game.page.url %}aria-current="page" {% endif %}href="{{ game.page.url | url }}">{{ game.data.name }}</a>
-            {%- endfor -%}
-          </div>
-        </span>
-        <span class="sep">-</span>
-        <a {% if page.url contains '/blog' %}aria-current="page" {% endif %}href="{{ '/blog' | url }}">Blog</a>
-        <span class="sep">-</span>
-        <a {% if page.url == '/join/' %}aria-current="page" {% endif %}href="{{ '/join' | url }}">Join</a>
-        <span class="sep">-</span>
-        <a {% if page.url == '/contact/' %}aria-current="page" {% endif %}href="{{ '/contact' | url }}">Contact</a>
-      </nav>
-      <nav class="social-links">
-        <a href="https://twitter.com/SadInteractive" target="_blank"><img alt="Twitter" height="76" src="{{ '/images/x.svg' | url }}"></a>
-        <a href="https://bsky.app/profile/sadfolks.bsky.social" target="_blank"><img alt="Bluesky" height="76" src="{{ '/images/bsky.svg' | url }}"></a>
-        <a href="" target="_blank"><img alt="Mastodon" height="76" src="{{ '/images/mastodon.svg' | url }}"></a>
-        <a href="https://cohost.org/SadFolksInteractive" target="_blank"><img alt="Cohost" height="76" src="{{ '/images/cohost.svg' | url }}"></a>
-      </nav>
+      {%- include 'site-links.liquid' -%}
+      {%- include 'social-links.liquid' -%}
     </header>
 
     {{ content }}
@@ -43,7 +21,7 @@
       TODO Footer
     </footer>
 
-    {%- if getBundle "js" -%}<script src="{{ '/' | url | slice: 0, -1 }}{% getBundleFileUrl "js" %}"></script>{%- endif -%}
+    <script src="{{ '/' | url | slice: 0, -1 }}{% getBundleFileUrl "js" %}"></script>
   </body>
 </html>
 
@@ -55,68 +33,6 @@ header {
   display: flex;
   column-gap: 12px;
   border-bottom: 2px solid black;
-}
-
-.site-links {
-  display: flex;
-  margin-left: auto;
-
-  a, .link, .sep {
-    color: black;
-    padding: 0 4px;
-    line-height: 90px;
-  }
-
-  a, .link {
-    padding: 0 8px;
-
-    &[aria-current] {
-      color: skyblue;
-    }
-      
-    &:hover {
-      background: #eee;
-    }
-  }
-
-  .link {
-    cursor: pointer;
-  }
-
-  .has-submenu {
-    position: relative;
-
-    .submenu {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 90px;
-      left: -70px;
-      width: 200px;
-      background: white;
-      box-shadow: black 0 0 10px 2px;
-      line-height: 1em;
-      text-align: center;
-
-      a {
-        padding: 10px;
-        line-height: 1em;
-      }
-    }
-
-    &:hover .submenu {
-      display: flex;
-    }
-  }
-}
-
-.social-links {
-  height: 90px;
-  display: flex;
-  align-items: center;
-  column-gap: 12px;
-
-  a { display: inline-block; }
 }
 
 .topbox {

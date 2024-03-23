@@ -1,0 +1,73 @@
+<nav class="site-links">
+  <a {% cur '/about/' %} href="{{ '/about/' | url }}">About</a>
+  <span class="sep">-</span>
+  <span class="link has-submenu" {% cur '/games' %}>
+    Games
+    <div class="submenu">
+      {%- for game in collections.game -%}
+        <a {% cur game.page.url %} href="{{ game.page.url | url }}">{{ game.data.name }}</a>
+      {%- endfor -%}
+    </div>
+  </span>
+  <span class="sep">-</span>
+  <a {% cur '/blog' %} href="{{ '/blog/' | url }}">Blog</a>
+  <span class="sep">-</span>
+  <a {% cur '/join/' %} href="{{ '/join/' | url }}">Join</a>
+  <span class="sep">-</span>
+  <a {% cur '/contact/' %} href="{{ '/contact/' | url }}">Contact</a>
+</nav>
+
+{% css %}
+.site-links {
+  display: flex;
+  margin-left: auto;
+
+  a, .link, .sep {
+    color: black;
+    padding: 0 4px;
+    line-height: 90px;
+  }
+
+  a, .link {
+    padding: 0 8px;
+
+    &[aria-current] {
+      color: skyblue;
+    }
+      
+    &:hover {
+      background: #eee;
+    }
+  }
+
+  .link {
+    cursor: pointer;
+  }
+
+  .has-submenu {
+    position: relative;
+
+    .submenu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 90px;
+      left: -70px;
+      width: 200px;
+      background: white;
+      box-shadow: black 0 0 10px 2px;
+      line-height: 1em;
+      text-align: center;
+
+      a {
+        padding: 10px;
+        line-height: 1em;
+      }
+    }
+
+    &:hover .submenu {
+      display: flex;
+    }
+  }
+}
+{% endcss %}
