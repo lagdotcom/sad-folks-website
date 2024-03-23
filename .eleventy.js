@@ -3,6 +3,7 @@ const htmlMinifier = require("html-minifier");
 const { inspect } = require("util");
 
 const sass = require("sass");
+const { env } = require("process");
 
 /** @typedef {'html'|'liquid'|'ejs'|'md'|'hbs'|'mustache'|'haml'|'pug'|'njk'|'11ty.js'} TemplateShortName */
 
@@ -68,6 +69,7 @@ const sass = require("sass");
  * @prop {<T>(plugin: EleventyPlugin<T>, options?: T) => void} addPlugin
  * @prop {(code: string, callback: (this: TemplateContext, ...args: any[]) => string) => void} addFilter
  * @prop {(name: string, callback: (this: TransformContext, content: string) => void) => void} addLinter
+ * @prop {(code: string, callback: (this: TemplateContext, ...args: any[]) => string) => void} addPairedShortcode
  * @prop {(code: string, callback: (this: TemplateContext, ...args: any[]) => string) => void} addShortcode
  * @prop {(name: string, callback: (this: TransformContext, content: string) => string) => void} addTransform
  * @prop {(name: string) => void} setDataFileBaseName
@@ -100,6 +102,10 @@ module.exports = function (eleventyConfig) {
       ? this.page.url === url
       : this.page.url.startsWith(url);
     if (match) return 'aria-current="page"';
+  });
+
+  eleventyConfig.addPairedShortcode("vercel", function (content) {
+    if (env.VERCEL) return content;
   });
 
   eleventyConfig.addTransform("html-minifier", function (content) {
