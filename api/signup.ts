@@ -13,7 +13,7 @@ export async function GET(req: Request) {
   if (!email) return new Response('Missing ?email', { status: 400 });
   if (!emailPattern.test(email)) return new Response('Invalid ?email', { status: 400 });
 
-  await kv.hset(mailingListKey, { email: name })
+  await kv.hset(mailingListKey, { [email]: name })
 
   return new Response('OK');
 }
