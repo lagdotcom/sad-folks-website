@@ -4,6 +4,40 @@ meta:
   title: Join | Sad Folks Interactive
 ---
 
-<div class="topbox tagline">Sign up for our big rad mailing list!!!!!!!</div>
+<h1 class="topbox tagline">Sign up for our big rad mailing list!!!!!!!</h1>
 
-TODO Content
+<main>
+  <h2>Sign up we swear it's siiiiiick</h2>
+
+  <ul>
+    <li>Reason why it's rad</li>
+    <li>Another reason why it's rad</li>
+    <li>Maybe even more reasons it's rad</li>
+  </ul>
+
+  <form
+    id="list-signup"
+    action="/api/signup"
+    method="post">
+    <label>
+      <span>Email</span>
+      <input
+        type="email"
+        name="email"
+        required>
+    </label>
+    <label>
+      <span>Preferred name (optional)</span>
+      <input name="name">
+    </label>
+    <button>Subscribe</button>
+  </form>
+</main>
+
+{% css %}
+  {% include 'join.scss' %}
+{% endcss %}
+
+{% js %}
+  {% include 'join.js' %}
+{% endjs %}

@@ -1,6 +1,8 @@
-for (const element of document.querySelectorAll(".social-link-todo")) {
-  element.addEventListener("click", (e) => {
-    alert("yo J tell me what this URL is lol");
-    e.preventDefault();
-  });
-}
+(function fakeLink(elements) {
+  for (const element of elements) {
+    element.addEventListener("click", (e) => {
+      alert("yo J tell me what this URL is lol");
+      e.preventDefault();
+    });
+  }
+})(document.querySelectorAll(".link-goes-where"));

@@ -72,6 +72,7 @@ const { env } = require("process");
  * @prop {(code: string, callback: (this: TemplateContext, ...args: any[]) => string) => void} addPairedShortcode
  * @prop {(code: string, callback: (this: TemplateContext, ...args: any[]) => string) => void} addShortcode
  * @prop {(name: string, callback: (this: TransformContext, content: string) => string) => void} addTransform
+ * @prop {(pattern: string) => void} addWatchTarget
  * @prop {(name: string) => void} setDataFileBaseName
  * @prop {(suffixes: string[]) => void} setDataFileSuffixes
  * @prop {(mode: boolean) => void} setQuietMode
@@ -118,6 +119,8 @@ module.exports = function (eleventyConfig) {
 
     return content;
   });
+
+  eleventyConfig.addWatchTarget("./src/**/*.{js,scss}");
 
   return {
     dir: { input: "src" },

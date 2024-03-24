@@ -2,6 +2,7 @@
   "private": "true",
   "name": "sad-folks-website",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "build": "yarn build:clean && yarn build:site",
     "serve": "yarn build:clean && yarn build:serve",
@@ -23,6 +24,12 @@
     "html-minifier": "^4.0.0",
     "rimraf": "^5.0.5",
     "sass": "^1.72.0",
-    "typescript": "^5.4.3"
+    "typescript": "^5.4.3",
+    "vercel": "^33.6.1"
+  },
+  "resolutions": {
+    "string-width": "npm:string-width-cjs",
+    "strip-ansi": "npm:strip-ansi-cjs",
+    "wrap-ansi": "npm:wrap-ansi-cjs"
   }
 }
