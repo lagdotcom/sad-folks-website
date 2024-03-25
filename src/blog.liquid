@@ -12,7 +12,7 @@ meta:
 
   <div class="article">
     <aside>
-      <img alt="/images/{{ post.data.author }}.png" alt="{{ post.data.author }}" />
+      <img alt="/images/{{ post.data.author | slugify }}.png" alt="{{ post.data.author }}" />
       <div>{{ post.data.author }}</div>
       {% if post.data.social %}
         {% if post.data.social.url %}<a href="{{ post.data.social.url }}">{% endif %}

@@ -13,3 +13,7 @@ export async function POST(req: Request) {
 
   return new Response('OK');
 }
+
+export const config = {
+  runtime: 'edge',
+};
