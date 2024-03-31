@@ -1,13 +1,13 @@
 .social-links {
   display: flex;
   align-items: center;
-  column-gap: 12px;
+  column-gap: 1em;
 
   a {
     display: inline-block;
   }
+}
 
-  .social-link-todo {
-    cursor: not-allowed;
-  }
+.link-goes-where {
+  cursor: not-allowed;
 }

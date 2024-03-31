@@ -4,7 +4,7 @@
   <span class="link has-submenu" {% cur '/games' %}>
     Games
     <div class="submenu">
-      {% for game in collections.game %}
+      {% for game in collections.game reversed %}
         <a {% cur game.page.url %} href="{{ game.page.url | url }}">{{ game.data.name }}</a>
       {% endfor %}
     </div>
