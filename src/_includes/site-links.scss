@@ -1,3 +1,5 @@
+@use "header";
+
 .site-links {
   display: flex;
   margin-left: auto;
@@ -7,7 +9,7 @@
   .sep {
     color: black;
     padding: 0 4px;
-    line-height: 90px;
+    line-height: header.$height;
   }
 
   a,

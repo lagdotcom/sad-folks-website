@@ -4,6 +4,7 @@ const { inspect } = require("util");
 
 const sass = require("sass");
 const { env } = require("process");
+const path = require("path");
 
 /** @typedef {'html'|'liquid'|'ejs'|'md'|'hbs'|'mustache'|'haml'|'pug'|'njk'|'11ty.js'} TemplateShortName */
 
@@ -87,7 +88,13 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(bundlerPlugin, {
     transforms: [
       async function (content) {
-        if (this.type === "css") return sass.compileString(content).css;
+        if (this.type === "css")
+          return sass.compileString(content, {
+            style: "compressed",
+            loadPaths: [
+              path.join(eleventyConfig.dir.input, eleventyConfig.dir.includes),
+            ],
+          }).css;
 
         return content;
       },
