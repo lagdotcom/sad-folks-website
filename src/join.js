@@ -1,12 +1,22 @@
 (function listSignupForm(form) {
   if (!form) return;
 
+  /** @type {NodeListOf<HTMLInputElement|HTMLButtonElement>} */
+  const inputs = form.querySelectorAll("input, button");
+
+  const disable = (value) => {
+    form.ariaDisabled = value;
+    for (const input of inputs) input.disabled = value;
+  };
+
   const report = document.createElement("div");
   report.className = "message";
   form.append(report);
 
   form.addEventListener("submit", (e) => {
     form.classList.add("busy");
+    disable(true);
+
     report.innerText = "";
     report.className = "message";
     e.preventDefault();
@@ -21,6 +31,9 @@
         if (r.ok) {
           report.classList.add("ok");
           report.innerText = "You're on the list!";
+        } else if (r.status === 404) {
+          report.classList.add("error");
+          report.innerText = "Can't find the server, oh no!";
         } else
           r.text().then((message) => {
             report.classList.add("error");
@@ -33,6 +46,9 @@
       })
       .finally(() => {
         form.classList.remove("busy");
+        disable(false);
       });
   });
+
+  disable(false);
 })(document.getElementById("list-signup"));

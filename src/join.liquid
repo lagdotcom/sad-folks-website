@@ -16,21 +16,23 @@ meta:
   </ul>
 
   <form
+    aria-disabled="true"
     id="list-signup"
     action="/api/signup"
     method="post">
     <label>
       <span>Email</span>
       <input
+        disabled
         type="email"
         name="email"
         required>
     </label>
     <label>
       <span>Preferred name (optional)</span>
-      <input name="name">
+      <input disabled name="name">
     </label>
-    <button>Subscribe</button>
+    <button disabled>Subscribe</button>
   </form>
 </main>
 
