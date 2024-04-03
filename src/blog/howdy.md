@@ -2,8 +2,6 @@
 date: 2024-03-31
 title: Howdy folks!
 author: Jacob
-social:
-  handle: "@whoever"
 ---
 
 We're Sad Folks Interactive, a small group of artists, musicians, and developers coming together to create video games. Initially just a handful of ideas and concepts formed between friends an ocean apart, Sad Folks Interactive has been bringing them to life since its inception!

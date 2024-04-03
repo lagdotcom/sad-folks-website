@@ -11,8 +11,8 @@
   },
   {
     "name": "Mastodon",
-    "icon": "/images/mastodon.svg",
-    "todo": true
+    "url": "https://mastodon.gamedev.place/@sadfolksinteractive",
+    "icon": "/images/mastodon.svg"
   },
   {
     "name": "Cohost",

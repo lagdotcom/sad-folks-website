@@ -1,0 +1,24 @@
+<section>
+  <span>Sad Folks Interactive</span>
+  <a href="/">Home</a>
+  <a href="/about/">About</a>
+  <a href="/blog/">Blog</a>
+  <a href="/join/">Join the Mailing List</a>
+  <a href="/contact/">Contact Us</a>
+</section>
+
+<section>
+  <span>Our Games</span>
+  {% for game in collections.game reversed %}
+    <a {% cur game.page.url %} href="{{ game.page.url | url }}">{{ game.data.name }}</a>
+  {% endfor %}
+</section>
+
+<section>
+  <span>Our Social Media</span>
+  {% for link in socials %}
+    {% if not link.todo %}
+      <a target="_blank" href="{{ link.url }}">{{ link.name }}</a>
+    {% endif %}
+  {% endfor %}
+</section>

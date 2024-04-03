@@ -19,7 +19,7 @@ header {
   }
 }
 
-.topbox {
+.topBox {
   margin: 0;
   padding: 1em 0;
   border-bottom: 1px solid black;
@@ -61,4 +61,22 @@ form {
 
 main {
   padding: 0 1em;
+}
+
+footer {
+  border-top: 1px solid black;
+  padding: 1em;
+  display: flex;
+  column-gap: 2em;
+  justify-content: center;
+
+  section {
+    display: flex;
+    flex-direction: column;
+
+    span {
+      font-size: 1.1em;
+      font-weight: bolder;
+    }
+  }
 }

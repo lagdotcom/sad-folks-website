@@ -5,7 +5,7 @@ meta:
 ---
 
 {% for post in collections.blog reversed %}
-  <div class="topbox">
+  <div class="topBox">
     <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%B %e, %Y' }}</time>
     <div class="title">{{ post.data.title }}</div>
   </div>
@@ -20,7 +20,7 @@ meta:
         {% if post.data.social.url %}</a>{% endif %}
       {% endif %}
     </aside>
-    <main>{{ post.content }}</main>
+    <article>{{ post.content }}</article>
   </div>
 {% endfor %}
 

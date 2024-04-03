@@ -21,7 +21,7 @@
     {{ content }}
 
     <footer>
-      TODO Footer
+      {% include 'footer.liquid' %}
     </footer>
 
     <script src="{{ '/' | url | slice: 0, -1 }}{% getBundleFileUrl "js" %}"></script>
