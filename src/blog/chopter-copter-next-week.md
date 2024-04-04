@@ -1,6 +1,6 @@
 ---
 date: 2024-04-02
-title: Copter Copter releases next week!
+title: Chopter Copter releases next week!
 author: Jacob
 ---
 
