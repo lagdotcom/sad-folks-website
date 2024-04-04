@@ -5,6 +5,10 @@ meta:
   title: Chopter Copter | Sad Folks Interactive
 ---
 
+<div class="banner">
+  <img src="{{ '/images/chopter-copter-banner.png' | url }}" alt="Chopter Copter">
+</div>
+
 ## About
 
 Chopter Copter is a crank-controlled game exclusively for the Playdate in which you slice and dice through wacky weirdos and aim for the high score!
