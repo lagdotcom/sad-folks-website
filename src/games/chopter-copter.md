@@ -35,7 +35,7 @@ Chopter Copter is currently only available in English, but does not require heav
 
 ### Is the soundtrack to Chopter Copter available anywhere?
 
-Absolutely! You can listen to and purchase the soundtrack at [zanzan's bandcamp](page for the game).
+Absolutely! You can listen to and purchase the soundtrack at [zanzan's bandcamp](https://zan-zan-zawa-veia.bandcamp.com/album/chopter-copter-ost).
 
 ### I ran across a bug or issue with Chopter Copter, what can I do?
 
