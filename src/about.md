@@ -20,6 +20,18 @@ Born, raised, and still living where Sad Folks Interactive was founded - Jacob's
 
 Final Fantasy VII (PS1), Mother 3 (GBA), metal music, home cooked meals
 
+## Paul "Lag.Com" Davies
+
+Programming
+
+### About
+
+Lag has written some code every day for over 30 years and he doesn't plan on stopping yet. While he mainly focuses on implementing whatever insanity the other team members come up with, occasional sparks of creativity make it to the surface. At any given moment, he is thinking about Dungeons & Dragons, roguelikes, dungeon crawlers or roguelike dungeon crawling D&D games.
+
+### Favorite Things
+
+Final Fantasy IX, tabletop roleplaying, trading cards, scotch eggs
+
 ## Emily "MercuryZelda" Davies
 
 Writing
