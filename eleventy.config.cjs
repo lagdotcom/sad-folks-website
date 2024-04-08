@@ -63,8 +63,6 @@ const { readFile, writeFile, mkdir, readdir } = require("fs/promises");
 
 /**
  * @typedef {object} TransformContext
- * @prop {string} inputPath
- * @prop {string} outputPath
  * @prop {string} url
  * @prop {PageContext} page
  */

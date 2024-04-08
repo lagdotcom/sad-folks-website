@@ -1,3 +1,6 @@
 {
-  "tags": "blog"
+  "tags": "blog",
+  "social": {
+    "icon": "sad-folks-192"
+  }
 }

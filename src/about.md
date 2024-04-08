@@ -1,16 +1,15 @@
 ---
 layout: layout.liquid
+header: About Us
 meta:
   title: About | Sad Folks Interactive
 ---
-
-<h1 class="topBox tagline">About Us</h1>
 
 <main>
 
 ## Jacob "UltraJDude" Ritz
 
-Design, Writing, Art, Music & Studio Operations
+Design, Writing, Art, Music &amp; Studio Operations
 
 ### About
 
@@ -26,7 +25,7 @@ Programming
 
 ### About
 
-Lag has written some code every day for over 30 years and he doesn't plan on stopping yet. While he mainly focuses on implementing whatever insanity the other team members come up with, occasional sparks of creativity make it to the surface. At any given moment, he is thinking about Dungeons & Dragons, roguelikes, dungeon crawlers or roguelike dungeon crawling D&D games.
+Lag has written some code every day for over 30 years and he doesn't plan on stopping yet. While he mainly focuses on implementing whatever insanity the other team members come up with, occasional sparks of creativity make it to the surface. At any given moment, he is thinking about Dungeons &amp; Dragons, roguelikes, dungeon crawlers or roguelike dungeon crawling D&amp;D games.
 
 ### Favorite Things
 

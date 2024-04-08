@@ -1,5 +1,3 @@
-@use "header";
-
 .site-links {
   display: flex;
   margin-left: auto;
@@ -9,7 +7,7 @@
   .sep {
     color: black;
     padding: 0 4px;
-    line-height: header.$height;
+    line-height: 96px;
   }
 
   a,
@@ -17,7 +15,7 @@
     padding: 0 8px;
 
     &[aria-current] {
-      color: skyblue;
+      color: #1d7da5;
     }
 
     &:hover {

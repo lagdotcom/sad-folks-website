@@ -1,8 +1,11 @@
 ---
 layout: layout.liquid
+header: Blog
 meta:
   title: Blog | Sad Folks Interactive
 ---
+
+<main class="noPad">
 
 {% for post in collections.blog reversed %}
   <div class="topBox">
@@ -12,7 +15,7 @@ meta:
 
   <div class="article">
     <aside>
-      <img alt="/images/{{ post.data.author | slugify }}.png" alt="{{ post.data.author }}" />
+      <img src="/images/{{ post.data.social.icon | slugify }}.png" alt="{{ post.data.author }}" width="192" height="192" />
       <div>{{ post.data.author }}</div>
       {% if post.data.social %}
         {% if post.data.social.url %}<a href="{{ post.data.social.url }}">{% endif %}
@@ -27,3 +30,5 @@ meta:
 {% css %}
   {% include 'blog.scss' %}
 {% endcss %}
+
+</main>
