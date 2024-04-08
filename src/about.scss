@@ -1,0 +1,9 @@
+.person {
+  margin: 1em 0;
+
+  &.hasPhoto {
+    display: flex;
+    align-items: flex-start;
+    column-gap: 1em;
+  }
+}

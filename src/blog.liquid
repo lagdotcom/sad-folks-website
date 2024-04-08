@@ -1,11 +1,10 @@
 ---
 layout: layout.liquid
 header: Blog
+mainClass: noPad
 meta:
   title: Blog | Sad Folks Interactive
 ---
-
-<main class="noPad">
 
 {% for post in collections.blog reversed %}
   <div class="topBox">
@@ -28,7 +27,5 @@ meta:
 {% endfor %}
 
 {% css %}
-  {% include 'blog.scss' %}
+{% include 'blog.scss' %}
 {% endcss %}
-
-</main>

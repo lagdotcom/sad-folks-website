@@ -5,35 +5,33 @@ meta:
   title: Join | Sad Folks Interactive
 ---
 
-<main>
-  <h2>Sign up now and hear all the latest from some Sad Folks!</h2>
-  <ul>
-    <li>Hear the first whispers and rumblings about new projects we're cooking up!</li>
-    <li>Learn about special promotions, offers, and sales on our games!</li>
-    <li>Unique smells (smells not included)!</li>
-  </ul>
+<h2>Sign up now and hear all the latest from some Sad Folks!</h2>
+<ul>
+  <li>Hear the first whispers and rumblings about new projects we're cooking up!</li>
+  <li>Learn about special promotions, offers, and sales on our games!</li>
+  <li>Unique smells (smells not included)!</li>
+</ul>
 
-  <form
-    aria-disabled="true"
-    class="{% component 'SignupForm' %}"
-    action="/api/signup"
-    method="post">
-    <label>
-      <span>Email</span>
-      <input
-        disabled
-        type="email"
-        name="email"
-        required>
-    </label>
-    <label>
-      <span>Preferred name (optional)</span>
-      <input disabled name="name">
-    </label>
-    <button disabled>Subscribe</button>
-  </form>
-</main>
+<form
+  aria-disabled="true"
+  class="{% component 'SignupForm' %}"
+  action="/api/signup"
+  method="post">
+  <label>
+    <span>Email</span>
+    <input
+      disabled
+      type="email"
+      name="email"
+      required>
+  </label>
+  <label>
+    <span>Preferred name (optional)</span>
+    <input disabled name="name">
+  </label>
+  <button disabled>Subscribe</button>
+</form>
 
 {% css %}
-  {% include 'join.scss' %}
+{% include 'join.scss' %}
 {% endcss %}

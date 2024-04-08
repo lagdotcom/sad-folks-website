@@ -8,8 +8,7 @@
     <meta name="generator" content="{{ eleventy.generator }}">
 
     <link rel="stylesheet" href="{{ '/' | url | slice: 0, -1 }}{% getBundleFileUrl "css", "layout" %}">
-    {%- capture cssBundle -%}{%- getBundleFileUrl "css" -%}{%- endcapture -%}
-    {% if cssBundle %}<link rel="stylesheet" href="{{ '/' | url | slice: 0, -1 }}{{ cssBundle }}">{% endif %}
+    <link rel="stylesheet" href="{{ '/' | url | slice: 0, -1 }}{% getBundleFileUrl "css" %}">
   </head>
   <body>
     <header>
@@ -19,10 +18,12 @@
         {% include 'social-links.liquid' %}
       </div>
 
-    {%- if header -%}<h1 class="topBox tagline">{{ header }}</h1>{%- endif -%}
+    {% if header %}<h1 class="topBox tagline">{{ header | escape }}</h1>{% endif %}
     </header>
 
-    {{ content }}
+    <main {% if mainClass %} class="{{ mainClass }}" {% endif %}>
+      {{ content }}
+    </main>
 
     <footer>
       {% include 'footer.liquid' %}
@@ -41,5 +42,5 @@
 </html>
 
 {% css 'layout' %}
-  {% include 'layout.scss' %}
+{% include 'layout.scss' %}
 {% endcss %}

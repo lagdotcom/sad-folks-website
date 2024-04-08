@@ -209,7 +209,7 @@ module.exports = function (eleventyConfig) {
     return content;
   });
 
-  eleventyConfig.addWatchTarget("./src/**/*.{scss}");
+  eleventyConfig.addWatchTarget("./src/**/*.scss");
 
   return {
     dir: { input: "src" },

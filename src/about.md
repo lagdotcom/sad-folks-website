@@ -5,7 +5,11 @@ meta:
   title: About | Sad Folks Interactive
 ---
 
-<main>
+<div class="person hasPhoto">
+
+  <img src="{{ '/images/photo-j.png' | url }}" width="192" height="253" alt="UltraJDude">
+
+  <div>
 
 ## Jacob "UltraJDude" Ritz
 
@@ -19,6 +23,12 @@ Born, raised, and still living where Sad Folks Interactive was founded - Jacob's
 
 Final Fantasy VII (PS1), Mother 3 (GBA), metal music, home cooked meals
 
+  </div>
+
+</div>
+
+<div class="person">
+
 ## Paul "Lag.Com" Davies
 
 Programming
@@ -30,6 +40,10 @@ Lag has written some code every day for over 30 years and he doesn't plan on sto
 ### Favorite Things
 
 Final Fantasy IX, tabletop roleplaying, trading cards, scotch eggs
+
+</div>
+
+<div class="person">
 
 ## Emily "MercuryZelda" Davies
 
@@ -43,4 +57,8 @@ An American who made their way to Britain by way of husband Lag.Com, Mercury spe
 
 The Beatles, The Legend of Zelda series (especially Wind Waker and Minish Cap), hand-dyed yarn, Italian and Japanese food
 
-</main>
+</div>
+
+{% css %}
+{% include 'about.scss' %}
+{% endcss %}
