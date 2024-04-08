@@ -15,7 +15,7 @@ meta:
 
   <form
     aria-disabled="true"
-    id="list-signup"
+    class="{% component 'SignupForm' %}"
     action="/api/signup"
     method="post">
     <label>
@@ -37,7 +37,3 @@ meta:
 {% css %}
   {% include 'join.scss' %}
 {% endcss %}
-
-{% js %}
-  {% include 'join.js' %}
-{% endjs %}

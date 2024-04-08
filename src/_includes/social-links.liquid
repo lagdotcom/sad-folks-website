@@ -1,7 +1,7 @@
 <nav class="social-links">
   {% for link in socials %}
     {% if link.todo %}
-      <span class="link-goes-where"><img
+      <span class="{% component 'FakeLink' %}"><img
           alt="{{ link.name }}"
           height="76"
           src="{{ link.icon | url }}"></span>
@@ -17,7 +17,3 @@
 {% css 'layout' %}
   {% include 'social-links.scss' %}
 {% endcss %}
-
-{% js %}
-  {% include 'social-links.js' %}
-{% endjs %}

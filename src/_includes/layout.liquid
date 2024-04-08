@@ -24,7 +24,7 @@
       {% include 'footer.liquid' %}
     </footer>
 
-    <script src="{{ '/' | url | slice: 0, -1 }}{% getBundleFileUrl "js" %}"></script>
+    {% componentScripts %}
     {% vercel %}
       <script>
         window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };

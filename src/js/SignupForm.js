@@ -1,6 +1,9 @@
-(function listSignupForm(form) {
-  if (!form) return;
+import { register } from "./components.js";
 
+/**
+ * @param {HTMLFormElement} form
+ */
+function SignupForm(form) {
   /** @type {NodeListOf<HTMLInputElement|HTMLButtonElement>} */
   const inputs = form.querySelectorAll("input, button");
 
@@ -51,4 +54,6 @@
   });
 
   disable(false);
-})(document.getElementById("list-signup"));
+}
+
+register("SignupForm", SignupForm);

@@ -1,10 +1,12 @@
 const bundlerPlugin = require("@11ty/eleventy-plugin-bundle");
 const htmlMinifier = require("html-minifier");
 const { inspect } = require("util");
+const { minify } = require("terser");
 
-const sass = require("sass");
+const { compileString } = require("sass");
 const { env } = require("process");
-const path = require("path");
+const { join, dirname, basename, normalize } = require("path");
+const { readFile, writeFile, mkdir, readdir } = require("fs/promises");
 
 /** @typedef {'html'|'liquid'|'ejs'|'md'|'hbs'|'mustache'|'haml'|'pug'|'njk'|'11ty.js'} TemplateShortName */
 
@@ -61,7 +63,18 @@ const path = require("path");
 
 /**
  * @typedef {object} TransformContext
+ * @prop {string} inputPath
+ * @prop {string} outputPath
+ * @prop {string} url
  * @prop {PageContext} page
+ */
+
+/**
+ * @typedef {object} EventData
+ * @prop {{ input: string, output: string, includes: string, data: string, layouts: string }} dir
+ * @prop {'fs'|'json'|'ndjson'} outputMode
+ * @prop {'build'|'watch'|'serve'} runMode
+ * @prop {Array<{ inputPath: string, outputPath: string, url: string, content: string }>} results
  */
 
 /**
@@ -72,13 +85,82 @@ const path = require("path");
  * @prop {(name: string, callback: (this: TransformContext, content: string) => void) => void} addLinter
  * @prop {(code: string, callback: (this: TemplateContext, ...args: any[]) => string) => void} addPairedShortcode
  * @prop {(code: string, callback: (this: TemplateContext, ...args: any[]) => string) => void} addShortcode
- * @prop {(name: string, callback: (this: TransformContext, content: string) => string) => void} addTransform
+ * @prop {(name: string, callback: (this: TransformContext, content: string, outputPath: string) => string) => void} addTransform
  * @prop {(pattern: string) => void} addWatchTarget
+ * @prop {(name: string, callback: (data: EventData)) => void} on
  * @prop {(name: string) => void} setDataFileBaseName
  * @prop {(suffixes: string[]) => void} setDataFileSuffixes
  * @prop {(mode: boolean) => void} setQuietMode
  * @prop {(formats: TemplateShortName[]) => void} setTemplateFormats
  */
+
+/**
+ * @param {EleventyConfig} eleventyConfig
+ */
+function componentsPlugin(eleventyConfig) {
+  /** @type {Map<string, Set<string>>} */
+  const pageComponents = new Map();
+
+  eleventyConfig.addShortcode("component", function (name) {
+    const key = this.page.outputPath;
+    const components = pageComponents.get(key) || new Set();
+    components.add(name);
+    pageComponents.set(key, components);
+    return name;
+  });
+
+  eleventyConfig.addShortcode("componentScripts", function () {
+    const components = pageComponents.get(this.page.outputPath);
+    if (components)
+      return Array.from(components).map(
+        (name) =>
+          `<script type="module" src="${eleventyConfig.pathPrefix}js/${name}.js"></script>`
+      );
+  });
+
+  eleventyConfig.on("eleventy.before", function () {
+    pageComponents.clear();
+  });
+
+  // compile and copy js
+  eleventyConfig.on("eleventy.after", async function ({ dir }) {
+    const sourceRoot = join(dir.input, "js");
+    const destinationRoot = join(dir.output, "js");
+    const encoding = "utf-8";
+
+    for (const name of await readdir(sourceRoot, { recursive: true })) {
+      const sourcePath = join(sourceRoot, name);
+      const destinationPath = join(destinationRoot, name);
+      const destinationMapPath = destinationPath + ".map";
+      const destinationDir = dirname(destinationPath);
+      await mkdir(destinationDir, { recursive: true });
+
+      const canonicalName = normalize("../" + sourcePath).replace(/\\/g, "/");
+      const raw = await readFile(sourcePath, { encoding });
+      const { code, map } = await minify(
+        { [canonicalName]: raw },
+        {
+          sourceMap: {
+            url: basename(destinationMapPath),
+            includeSources: true,
+          },
+        }
+      );
+
+      if (code) {
+        await writeFile(destinationPath, code, { encoding });
+        console.log(`[js] Writing ${sourcePath} to ${destinationPath}`);
+      }
+
+      if (map) {
+        await writeFile(destinationMapPath, map, { encoding });
+        console.log(`[js] Writing ${destinationMapPath}`);
+      }
+    }
+  });
+
+  eleventyConfig.addWatchTarget("src/js/**/*");
+}
 
 /**
  * @param {EleventyConfig} eleventyConfig
@@ -89,10 +171,10 @@ module.exports = function (eleventyConfig) {
     transforms: [
       async function (content) {
         if (this.type === "css")
-          return sass.compileString(content, {
+          return compileString(content, {
             style: "compressed",
             loadPaths: [
-              path.join(eleventyConfig.dir.input, eleventyConfig.dir.includes),
+              join(eleventyConfig.dir.input, eleventyConfig.dir.includes),
             ],
           }).css;
 
@@ -100,6 +182,8 @@ module.exports = function (eleventyConfig) {
       },
     ],
   });
+
+  eleventyConfig.addPlugin(componentsPlugin);
 
   eleventyConfig.addPassthroughCopy("src/images");
 
@@ -127,7 +211,7 @@ module.exports = function (eleventyConfig) {
     return content;
   });
 
-  eleventyConfig.addWatchTarget("./src/**/*.{js,scss}");
+  eleventyConfig.addWatchTarget("./src/**/*.{scss}");
 
   return {
     dir: { input: "src" },
