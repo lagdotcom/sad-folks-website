@@ -15,7 +15,7 @@ Chopter Copter is a crank-controlled game exclusively for the Playdate in which 
 
 ## Where to play
 
-Buy now on [itch.io](https://sadfolks.itch.io/chopter-copter) and play on your Playdate. Coming soon to Playdate Catalog!
+Buy now on [Playdate Catalog](https://play.date/games/chopter-copter/) and [itch.io](https://sadfolks.itch.io/chopter-copter).
 
 ## FAQ
 
