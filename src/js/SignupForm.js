@@ -17,16 +17,16 @@ function SignupForm(form) {
   form.append(report);
 
   form.addEventListener("submit", (e) => {
+    const data = new FormData(form, e.submitter);
+    const json = {};
+    for (const [name, value] of data) json[name] = value;
+
     form.classList.add("busy");
     disable(true);
 
     report.innerText = "";
     report.className = "message";
     e.preventDefault();
-
-    const data = new FormData(form);
-    const json = {};
-    for (const [name, value] of data) json[name] = value;
 
     const body = JSON.stringify(json);
     fetch(form.action, { method: form.method, body })
