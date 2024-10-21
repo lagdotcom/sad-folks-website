@@ -1,12 +1,12 @@
-const bundlerPlugin = require("@11ty/eleventy-plugin-bundle");
-const htmlMinifier = require("html-minifier");
-const { inspect } = require("util");
-const { minify } = require("terser");
+import bundlerPlugin from "@11ty/eleventy-plugin-bundle";
+import { minify as _minify } from "html-minifier";
+import { inspect } from "util";
+import { minify } from "terser";
 
-const { compileString } = require("sass");
-const { env } = require("process");
-const { join, dirname, basename, normalize } = require("path");
-const { readFile, writeFile, mkdir, readdir } = require("fs/promises");
+import { compileString } from "sass";
+import { env } from "process";
+import { join, dirname, basename, normalize } from "path";
+import { readFile, writeFile, mkdir, readdir } from "fs/promises";
 
 /** @typedef {'html'|'liquid'|'ejs'|'md'|'hbs'|'mustache'|'haml'|'pug'|'njk'|'11ty.js'} TemplateShortName */
 
@@ -164,7 +164,7 @@ function componentsPlugin(eleventyConfig) {
  * @param {EleventyConfig} eleventyConfig
  * @returns {EleventyOptions}
  */
-module.exports = function (eleventyConfig) {
+export default function (eleventyConfig) {
   eleventyConfig.addPlugin(bundlerPlugin, {
     transforms: [
       async function (content) {
@@ -200,7 +200,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addTransform("html-minifier", function (content) {
     if (this.page.outputPath && this.page.outputPath.endsWith(".html"))
-      return htmlMinifier.minify(content, {
+      return _minify(content, {
         useShortDoctype: true,
         removeComments: true,
         collapseWhitespace: true,
@@ -214,4 +214,4 @@ module.exports = function (eleventyConfig) {
   return {
     dir: { input: "src" },
   };
-};
+}

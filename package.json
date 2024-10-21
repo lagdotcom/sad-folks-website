@@ -15,18 +15,18 @@
   "author": "Lag.Com <lagdotcom@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "@vercel/kv": "^1.0.1"
+    "@vercel/kv": "^3.0.0"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^2.0.1",
-    "@11ty/eleventy-plugin-bundle": "^1.0.5",
-    "@types/node": "^20.12.5",
+    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy-plugin-bundle": "^3.0.0",
+    "@types/node": "^20.16.13",
     "html-minifier": "^4.0.0",
-    "rimraf": "^5.0.5",
-    "sass": "^1.74.1",
-    "terser": "^5.30.3",
-    "typescript": "^5.4.4",
-    "vercel": "^33.7.0"
+    "rimraf": "^6.0.1",
+    "sass": "^1.80.3",
+    "terser": "^5.36.0",
+    "typescript": "^5.6.3",
+    "vercel": "^37.11.0"
   },
   "resolutions": {
     "string-width": "npm:string-width-cjs",
